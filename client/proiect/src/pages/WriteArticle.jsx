@@ -42,7 +42,6 @@ function WriteArticle() {
         if(!articleState) {
             await addArticle(id, formData);
         } else {
-            console.log("TEST");
             await editArticle(id, formData);
             navigate(`/articles/${id}`);
         }

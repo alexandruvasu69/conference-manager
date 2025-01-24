@@ -12,8 +12,6 @@ const useCheckRegister = () => {
         setErrorCheck(null);
         setSuccessCheck(false);
 
-        console.log("TOKEN" + token);
-
         try {
             const response = await fetch(`${import.meta.env.VITE_API}/conferences/${id}/check-registered`, {
                 method: 'GET',
@@ -23,8 +21,6 @@ const useCheckRegister = () => {
                 },
             });
             const data = await response.json(); 
-
-            console.log(data);
 
             if (data.success) {
                 setSuccessCheck(true);

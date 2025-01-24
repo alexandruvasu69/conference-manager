@@ -26,12 +26,9 @@ function Article() {
         if (article) {
           setArticleState(article);
         }
-
-        console.log("REVIEWS:" + articleState?.review);
     }, [article]);
 
     const openModal = () => {
-        console.log("OPEN MODAL");
         return setIsModalOpen(true);
     };
     const closeModal = () => setIsModalOpen(false);
@@ -62,16 +59,12 @@ function Article() {
     const handleApproveArticle = async () => {
         if(article) {
             const editedArticle = await editArticle(article.id, { status: "accepted" });
-            console.log(editedArticle)
             setArticleState(editedArticle);
         }
     }
 
     const handleEditReview = async (reviewId, status) => {
-
-        console.log("EDIT REVIEW: ", articleState);
         const editedReview = await editReview({ status: status }, reviewId);
-        console.log("EDITED REVIEW: ", editedReview.fullReview);
         setArticleState((prev) => {
             if (!prev || !prev.reviews) {
               return prev;

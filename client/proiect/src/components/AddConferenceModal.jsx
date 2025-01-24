@@ -3,8 +3,8 @@ import useAddConference from '../hooks/useAddConference';
 import Select from 'react-select';
 import './addconferencemodal.css';
 
-function AddConferenceModal({ isOpen, onClose }) {
-    const { addConference, success } = useAddConference();
+function AddConferenceModal({ isOpen, onClose, onAddConference }) {
+    const { addConference, addConferenceSuccess } = useAddConference();
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -27,7 +27,6 @@ function AddConferenceModal({ isOpen, onClose }) {
                 value: reviewer.id,
                 label: reviewer.username,
             }));
-            console.log(formattedOptions);
 
             setOptions(formattedOptions);
         };
@@ -43,8 +42,6 @@ function AddConferenceModal({ isOpen, onClose }) {
             ...prevState,
             [name]: value
         }));
-        
-        console.log(formData);
     };
 
     const handleSelectChange = (selected) => {
@@ -57,13 +54,15 @@ function AddConferenceModal({ isOpen, onClose }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await addConference(formData);
-        if (success) {
+        const conference = await addConference(formData);
+        if (conference) {
+            onAddConference(conference.conference);
             setFormData({
                 title: '',
                 description: '',
                 reviewerIds: []
             });
+            onClose();
         }
     };
 
@@ -109,7 +108,7 @@ function AddConferenceModal({ isOpen, onClose }) {
                             classNamePrefix="react-select"
                         />
                     </div>
-                    <button type="submit" className="btn" disabled={loading}>
+                    <button type="submit" className="btn" disabled={loading || selectedOptions.length < 2}>
                         {loading ? 'Se încarcă...' : 'Adaugă Conferința'}
                     </button> 
                 </form>

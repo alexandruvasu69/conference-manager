@@ -23,7 +23,6 @@ function useGetArticle(id) {
                 }
 
                 const data = await response.json();
-                console.log(data.data)
                 setArticle(data.data.article);
             } catch (err) {
                 setError(err.message);

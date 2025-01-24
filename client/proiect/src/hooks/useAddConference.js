@@ -23,15 +23,19 @@ const useAddConference = () => {
                     'Authorization': `Bearer ${token}`,
                 },
             });
+            const data = await response.json();
 
-            if (response.success) {
+            if (data.success) {
                 setAddConferenceSuccess(true);
+                return data.data;
             } else {
                 const errorData = await response.json();
                 setAddConferenceError(errorData.message || 'Eroare la adăugarea conferinței');
+                return null;
             }
         } catch (err) {
             setAddConferenceError(err.message || 'Eroare la adăugarea conferinței');
+            return null;
         } finally {
             setAddConferenceLoading(false);
         }

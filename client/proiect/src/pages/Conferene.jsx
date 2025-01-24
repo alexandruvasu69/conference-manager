@@ -19,8 +19,6 @@ function Conference() {
 
     const { token } = useSelector((state) => state.global);
 
-    console.log(errorCheck, successCheck, loadingCheck);
-
     useEffect(() => {
         if(token) {
             checkRegister(id);
@@ -63,12 +61,14 @@ function Conference() {
 
                 <div className="articles-container">
                     {!loading && articles.map(article => (
-                        <div key={article.id} className="article-card" onClick={() => navigator(`/articles/${article.id}`)}>
-                            <h2 className="article-title">{article.title}</h2>
-                            <p className="article-author"><strong>Autor:</strong> {article.author.username}</p>
+                        <div key={article.id} className={`article-card status-${article.status}`} onClick={() => navigator(`/articles/${article.id}`)}>
+                            <div className="article-title-container">
+                                <h2 className="article-title">{article.title}</h2>
+                                <button className={`article-status article-status-${article.status}`}>{article.status}</button>
+                            </div>
+                            
                             <p className="article-description">{article.description}</p>
-                            <p className="article-description">Status: {article.status}</p>
-                            <a  className="read-more-btn">Citește mai mult</a>
+                            <p className="article-author"><strong>Autor:</strong> {article.author.username}</p>
                         </div>
                     ))}
                 </div>

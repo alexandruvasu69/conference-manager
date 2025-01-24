@@ -1,6 +1,11 @@
 /* src/styles/Login.css */
 
 /* Stiluri specifice pentru componenta Login */
+.login-container {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+}
 
 .login-box {
     background-color: #fff;

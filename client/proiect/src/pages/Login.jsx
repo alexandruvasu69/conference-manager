@@ -31,8 +31,6 @@ function Login() {
             setError('');
         }
 
-        console.log("FORMSTATE:" + formState.username + " " + formState.password);
-
         const options = {
             method: 'POST',
             headers: {
@@ -57,11 +55,11 @@ function Login() {
         }
     }
 
-    return (<div className="container">
+    return (<div className="login-container">
     <div className="login-box">
         <div className="logo">
             <i className="fas fa-laptop-code"></i>
-            <h2>Conferințe IT</h2>
+            <h2>Conferences</h2>
         </div>
         <form id="loginForm" onSubmit={(e) => {
             e.preventDefault();
@@ -76,11 +74,6 @@ function Login() {
                 <input onChange={(e) => updateFormState('password', e.target.value)} type="password" id="password" name="password" placeholder="password" required />
             </div>
             <button type="submit" className="btn">Autentificare</button>
-            <div className="links">
-                <a href="#">Am uitat parola</a>
-                <span> | </span>
-                <a href="#">Nu ai un cont? Înregistrează-te</a>
-            </div>
         </form>
     </div>
 </div>)

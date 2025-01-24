@@ -222,13 +222,11 @@ form .submit-btn {
 
 /* Conferințe */
 .conferences {
-  padding: 60px 0;
   background-color: #fff;
 }
 
 .conferences h2 {
   text-align: center;
-  margin-bottom: 40px;
   font-size: 2rem;
   color: #007BFF;
 }

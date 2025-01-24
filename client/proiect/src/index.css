@@ -141,21 +141,23 @@ form .submit-btn {
 
 /* Conferințe */
 .conferences {
-  padding: 60px 0;
+  padding-top: 1rem;
   background-color: #fff;
 }
 
 .conferences h2 {
-  text-align: center;
-  margin-bottom: 40px;
   font-size: 2rem;
+  text-align: center;
   color: #007BFF;
 }
 
 .conference-grid {
+  width: 100%; /* Ensure the grid takes the full width */
+  max-width: 80vw; Limit the maximum width
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+  gap: 10rem; /* Add space between cards */
+  min-height: 40vh;
 }
 
 .conference-card {
@@ -215,4 +217,13 @@ form .submit-btn {
 
 .conference-content .btn:hover {
   background-color: #0056b3;
+}
+
+.conference-section {
+  padding: 20px; /* Adjust padding around the section */
+  background-color: #fff; /* Ensure the background is consistent */
+  margin-top: 0; /* Remove extra spacing from the top */
+  
+  display: grid;
+  gap: 2rem;
 }

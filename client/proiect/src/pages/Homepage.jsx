@@ -8,9 +8,18 @@ import Header from "../components/Header";
 function Homepage() {
     const { loggedIn, role, token } = useSelector((state) => state.global);
     const { conferences, loading, error, success } = useFetchConferences();
+    const [ conferencesState, setConferencesState ] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    useEffect(() => {console.log(token)}, [token]);
+    useEffect(() => {
+        if (conferences) {
+          setConferencesState(conferences);
+        }
+    }, [conferences]);
+
+    const handleAddConference = (conference) => {
+        setConferencesState(prev => [...prev, conference]);
+    }
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
@@ -24,15 +33,15 @@ function Homepage() {
             { error && <p>{error}</p> }
             { success && <main>
                 <section className="conferences">
-                    <div className="container">
+                    <div className="conference-section">
                         <h2>Conferințele Noastre</h2>
-                        <div className="conference-grid">
+                        
 
-                            { conferences.map(conference => {
+                            { conferencesState.map(conference => {
                                 return <div className="conference-card" key={conference.id} onClick={() => navigator(`/conferences/${conference.id}`)}>
-                                    <img src="https://via.placeholder.com/400x200" alt="Conferință 1" />
+                                    <img src="/media/conference.jpg" alt="Conferință 1" />
                                     <div className="conference-content">
-                                        <h3>{conference.title}</h3>
+                                        <h3>{conference.name}</h3>
                                         <p>{conference.description}</p>
                                         <button className="btn">Detalii</button>
                                     </div>
@@ -40,7 +49,7 @@ function Homepage() {
                             
                             }) }
                             
-                        </div>
+                        
                     </div>
                 </section>
             </main> }
@@ -76,8 +85,7 @@ function Homepage() {
                 </button>
             )}
 
-            {/* Modalul de adăugare conferință */}
-            <AddConferenceModal isOpen={isModalOpen} onClose={closeModal} />
+            <AddConferenceModal isOpen={isModalOpen} onClose={closeModal} onAddConference={handleAddConference} />
         </>
     )
 }

@@ -9,9 +9,6 @@ function useFetchConferences() {
     const { loggedIn, token } = useSelector((state) => state.global);
 
     useEffect(() => {
-        console.log("TEST IN USE FETCH CONFERENCES");
-        console.log(token);
-        console.log(loggedIn);
 
         const fetchConferences = async () => {
             setLoading(true);

@@ -7,7 +7,6 @@ function useCheckToken() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log("TESTARE IN CHECK TOKEN")
         const token = localStorage.getItem('token');
 
         if(location.pathname === "/login" && !token) {
@@ -29,14 +28,12 @@ function useCheckToken() {
             })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
                 if(data.success) {
                     dispatch(setLoggedIn(true));
                     dispatch(setToken(token));
                     const decoded = jwtDecode(token);
                     dispatch(setRole(decoded.role));
                     dispatch(setUserId(decoded.id));
-                    console.log("logged in");
 
                     if(location.pathname === "/login") {
                         window.location.href = '/';    

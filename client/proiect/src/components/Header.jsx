@@ -36,7 +36,7 @@ function Header() {
         <div className="container">
             <div className="logo" onClick={() => navigator("/")}>
                 <i className="fas fa-laptop-code"></i>
-                <h1>Conferințe IT</h1>
+                <h1>Conferences</h1>
             </div>
             <nav>
                 <ul>

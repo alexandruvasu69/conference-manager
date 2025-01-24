@@ -28,26 +28,31 @@
 }
 
 .articles-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    display: flex; /* Change from grid to flex */
+    flex-direction: column; /* Stack articles vertically */
+    gap: 20px; /* Add space between articles */
+    width: 100%; /* Ensure full width */
+    align-items: center; /* Center articles horizontally */
 }
 
 .article-card {
+    width: 100%; /* Make article cards full width */
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px;
 }
+
 
 .article-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+
 .article-title {
-    color: #007BFF;
     margin-bottom: 10px;
     font-size: 1.5rem;
 }
@@ -91,4 +96,58 @@
     background: white;
     border-radius: 10px;
     margin-block-end: 2rem;
+}
+
+.status-submitted {
+    border-left: 8px solid #007bff; /* Blue */
+}
+
+.status-in_review {
+    border-left: 8px solid rgb(255, 136, 0); /* Orange */
+}
+
+.status-needs_revision {
+    border-left: 8px solid #ffc107; /* Yellow */
+}
+
+.status-accepted {
+    border-left: 8px solid #28a745; /* Green */
+}
+
+.status-rejected {
+    border-left: 8px solid #dc3545; /* Red */
+}
+
+.article-title-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.article-status-submitted {
+    background-color: #007bff;
+}
+
+.article-status-in_review {
+    background-color: rgb(255, 136, 0);
+}
+
+.article-status-needs_revision {
+    background-color: #ffc107;
+}
+
+.article-status-accepted {
+    background-color: #28a745;
+}
+
+.article-status-rejected {
+    background-color: #dc3545;
+}
+
+.article-status {
+    border: none;
+    min-width: 90px;
+    padding: 0.6rem 1rem;
+    border-radius: 30px;
+    height: min-content;
+    color:#ffffff;
 }

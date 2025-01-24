@@ -8,9 +8,6 @@ function useFetchArticles(conferenceId) {
     const { loggedIn, token } = useSelector((state) => state.global);
 
     useEffect(() => {
-        console.log("TEST LOG IN NOU")
-        console.log("Logged in: " + loggedIn);
-        console.log(token);
         const fetchArticles = async () => {
             try {
                 const response = await fetch(`${import.meta.env.VITE_API}/conferences/${conferenceId}/articles`, {
@@ -26,7 +23,6 @@ function useFetchArticles(conferenceId) {
                 }
 
                 const data = await response.json();
-                console.log(data.data.articles);
                 setArticles(data.data.articles);
             } catch (err) {
                 setError(err.message);

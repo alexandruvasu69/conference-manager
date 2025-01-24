@@ -8,7 +8,7 @@ function AddReviewModal({ isOpen, onClose, onAddReview, conferenceId, articleId 
     const [formData, setFormData] = useState({
         header: '',
         comments: '',
-        status: 'opened', // Valoarea implicită a enum-ului
+        status: 'opened',
     });
 
     const { addReview, addReviewLoading, addReviewError, addReviewSuccess } = useAddReview();
@@ -69,20 +69,6 @@ function AddReviewModal({ isOpen, onClose, onAddReview, conferenceId, articleId 
                             required
                             rows="4"
                         ></textarea>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="status">Status</label>
-                        <select 
-                            id="status"
-                            name="status"
-                            value={formData.status}
-                            onChange={handleChange}
-                            required
-                        >
-                            <option value="opened">Opened</option>
-                            <option value="closed">Closed</option>
-                            <option value="in_progress">In Process</option>
-                        </select>
                     </div>
                     <button type="submit" className="btn" disabled={addReviewLoading}>
                         {addReviewLoading ? 'Se încarcă...' : 'Adaugă Review'}
