@@ -91,7 +91,9 @@ router.put("/:articleId", async (req, res) => {
             return res.status(400).json({ success: false, message: "Reviewer not authorized", data: {} });
         }
 
-        await article.update(req.body);
+        await article.update({
+            ...req.body,
+        });
 
         const fullArticle = await Article.findByPk(article.id, {
             include: [{

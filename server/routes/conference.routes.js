@@ -75,6 +75,7 @@ router.post("/", async (req, res) => {
         });
 
         await conference.addReviewers(reviewers);
+        await conference.addAuthors([...reviewers, user]);
 
         return res.status(200).json({ success: true, message: "Conference created", data: { conference } });
     } catch (error) {
