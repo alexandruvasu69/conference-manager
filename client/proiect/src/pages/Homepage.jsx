@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import AddConferenceModal from "../components/AddConferenceModal";
 import Header from "../components/Header";
+import boostImg from '../assets/boost-conference-engagement.jpg';
+
 
 function Homepage() {
     const { loggedIn, role, token } = useSelector((state) => state.global);
@@ -30,7 +32,7 @@ function Homepage() {
 
                             { conferences.map(conference => {
                                 return <div className="conference-card" key={conference.id} onClick={() => navigator(`/conferences/${conference.id}`)}>
-                                    <img src="./public/boost-conference-engagement.jpg" alt="Conferință 1" />
+                                    <img src={boostImg} alt="Conferință 1" />
                                     <div className="conference-content">
                                         <h3>{conference.title}</h3>
                                         <p>{conference.description}</p>
