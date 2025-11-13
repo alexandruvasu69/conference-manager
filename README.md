@@ -28,6 +28,8 @@ Each user has a different role so that all flows (author, reviewer, conference o
 | Author               | test3        | 1234     |
 |                      | test4        | 1234     |
 
+These accounts are demo-only and may be reset at any time.
+
 ### How to use the test accounts
 
 1. Go to the login page of the deployed app
@@ -179,6 +181,9 @@ npm run dev
 cd client/proiect
 npm run dev
 ```
+## User configuration
+
+In order to use the platform with your own TOKEN_SECRET you will need to add users to the database manually using the /auth/register route with an API Client and change the roles as desired with a DBMS. (Sorry🙃)
 
 
 
