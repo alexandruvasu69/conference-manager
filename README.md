@@ -7,14 +7,41 @@ Includes a **custom REST API**, **JWT authentication**, and **role-based access 
 
 ## Deployment
 
-### Production Link
- **Frontend (Vercel)**: https://proiect-tw-skibidi-rizzlers-2.vercel.app/
+This project is deployed using a hybrid architecture:
+
+**Frontend** → hosted on Vercel
+
+**Backend API** → hosted on a Linux Server, secured with Nginx reverse proxy, HTTPS (Let's Encrypt) and UFW firewall
+
+#### [Production Link](https://proiect-tw-skibidi-rizzlers.vercel.app)
+
+## Test Users
+
+For demo purposes, the platform can be tested using the following accounts.  
+Each user has a different role so that all flows (author, reviewer, conference organizer) can be tested easily.
+
+| Role                 | Username     | Password |
+|----------------------|--------------|----------|
+| Conference Organizer | test         | 1234     |
+| Reviewer             | test1        | 1234     |
+|                      | test2        | 1234     |
+| Author               | test3        | 1234     |
+|                      | test4        | 1234     |
+
+### How to use the test accounts
+
+1. Go to the login page of the deployed app
+2. Log in with one of the accounts above (username + password).
+3. Try different flows:
+   - Login as **Organizer** → create a conference.
+   - Login as **Author** → register to a conference and submit an article.
+   - Login as **Reviewer** → add reviews, change review status, approve articles.
 
 ## Features
 
-### 🔐 Authentication & Authorization
+### Authentication & Authorization
 - Login & signup using JSON Web Tokens (JWT)
-- Tokens handled securely (HttpOnly cookie or Authorization header)
+- Tokens handled securely
 - Protected backend routes with server-side validation
 - Frontend guards based on user session and role
 
@@ -24,7 +51,7 @@ Includes a **custom REST API**, **JWT authentication**, and **role-based access 
 |-------------|--------------|
 | **Author**  | Creates and edits own articles, views reviews, responds to reviewer feedback |
 | **Reviewer**| Leaves reviews on articles, approves/rejects review status, marks article as ready |
-| **Admin**   | Manages conferences, articles, users, and roles |
+| **Organizer**   | Manages conferences, articles, users, and roles |
 
 RBAC is enforced on:
 - Backend (middleware checking JWT + user role)
@@ -57,7 +84,7 @@ RBAC is enforced on:
 - Node.js + Express.js
 - Custom REST API
 - JWT authentication middleware
-- RBAC authorization middleware
+- RBAC authorization
 - PostgreSQL database with relational schema
 
 ```
@@ -99,19 +126,6 @@ RBAC is enforced on:
 
 ---
 
-### Example RBAC Middleware (Backend)
-
-```js
-function authorizeRoles(...roles) {
-  return (req, res, next) => {
-    if (!roles.includes(req.user.role)) {
-      return res.status(403).json({ message: "Forbidden" });
-    }
-    next();
-  };
-}
-```
-
 ## Local Development Setup
 
 ### Requirements
@@ -150,7 +164,7 @@ VITE_API=http://localhost:3000
 - **Backend**
 ```
 PORT=3000
-TOKEN_SECRET=jf1938em1d9vvj39jgd91djf91
+TOKEN_SECRET=secret_token
 ```
 
 ### Start the development servers
@@ -165,3 +179,9 @@ npm run dev
 cd client/proiect
 npm run dev
 ```
+
+
+
+
+
+
